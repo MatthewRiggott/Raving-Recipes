@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :directions
+  resources :ingredients
+  resources :recipe_ingredients
+  resources :recipes
   root 'homes#index'
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
