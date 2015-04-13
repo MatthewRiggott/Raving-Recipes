@@ -54,22 +54,19 @@ ActiveRecord::Schema.define(version: 20150413170918) do
     t.datetime "updated_at",                     null: false
   end
 
-  add_index "recipe_ingredients", ["ingredient_id", "recipe_id"], name: "index_recipe_ingredients_on_ingredient_id_and_recipe_id", unique: true, using: :btree
-
   create_table "recipes", force: :cascade do |t|
-    t.integer  "user_id",                    null: false
-    t.string   "category",                   null: false
-    t.string   "name",                       null: false
-    t.text     "description",                null: false
-    t.integer  "prep_time",                  null: false
-    t.integer  "rating_count", default: 0,   null: false
-    t.integer  "rating_total", default: 0,   null: false
-    t.string   "country",      default: "0", null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.integer  "user_id",                  null: false
+    t.string   "category",                 null: false
+    t.string   "name",                     null: false
+    t.text     "description",              null: false
+    t.integer  "prep_time",                null: false
+    t.integer  "rating_count", default: 0, null: false
+    t.integer  "rating_total", default: 0, null: false
+    t.string   "country",                  null: false
+    t.string   "image_url",                null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
-
-  add_index "recipes", ["name"], name: "index_recipes_on_name", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                                null: false

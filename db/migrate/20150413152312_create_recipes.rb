@@ -8,7 +8,8 @@ class CreateRecipes < ActiveRecord::Migration
       t.integer :prep_time, null: false
       t.integer :rating_count, null: false, default: 0
       t.integer :rating_total, null: false, default: 0
-      t.string :country, null: false, default: 0
+      t.string :country, null: false
+      t.string :image_url, null: false
 
       t.timestamps null: false
     end
