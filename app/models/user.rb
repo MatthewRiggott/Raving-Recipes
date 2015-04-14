@@ -19,7 +19,6 @@ class User < ActiveRecord::Base
     if user.nil?
       # verify the email -  return email   --    facebook hash       linked in(not used here)      google oauth verified
       email_is_verified = auth.info.email && (auth.info.verified || auth.info.verified_email || auth.extra.raw_info.email_verified)
-      binding.pry
       email = auth.info.email if email_is_verified
       user = User.where(:email => email).first if email
 

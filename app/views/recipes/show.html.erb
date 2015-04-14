@@ -1,19 +1,38 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>User:</strong>
-  <%= @recipe.user_id %>
+  Name:
+  <%= @recipe.name %>
+</p>
+
+<img src= <%= @recipe.image_url %> alt="Picture of Food">
+<p>
+  Description:
+  <%= @recipe.description %>
 </p>
 
 <p>
-  <strong>Category:</strong>
+  Category:
   <%= @recipe.category %>
 </p>
 
 <p>
-  <strong>Timestamps:</strong>
-  <%= @recipe.timestamps %>
+  Preparation Time:
+  <%= @recipe.prep_time %>
 </p>
 
-<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+<ul>
+  Ingredients:
+  <% recipe.ingredients.each do |ingredient| %>
+    <li><%= ingredient %> </li>
+  <% end %>
+</ul>
+<%= form_for [@recipe, @ingredient] do |f| %>
+  <%
+
+
+
+
+<p><%= link_to 'Edit', edit_recipe_path(@recipe) %></p>
+<p><%= link_to 'Add</p>
 <%= link_to 'Back', recipes_path %>

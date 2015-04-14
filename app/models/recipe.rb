@@ -9,7 +9,7 @@ class Recipe < ActiveRecord::Base
   validates :user, presence: true
   validates :description, presence: true, length: { minimum: 31 }
   validates :prep_time, presence: true, numericality: { only_integer: true }
-  validates :vote_count, presence: true, numericality: { only_integer: true }
+  #validates :vote_count, presence: true, numericality: { only_integer: true }
   validates :country, presence: true
   validates :rating_count, presence: true, numericality: {
     only_integer: true,
