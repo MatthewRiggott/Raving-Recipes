@@ -23,16 +23,34 @@
 
 <ul>
   Ingredients:
-  <% recipe.ingredients.each do |ingredient| %>
+  <% @recipe.ingredients.each do |ingredient| %>
     <li><%= ingredient %> </li>
   <% end %>
 </ul>
 <%= form_for [@recipe, @ingredient] do |f| %>
-  <%
+  <div class="field">
+    <%= f.label :numerator_amount %>
+    <%= f.number_field :numerator_amount %>
 
+    <%= f.label :denominator_amount %>
+    <%= f.number_field :denominator_amount %>
+  </div>
 
+  <div class="field">
+    <%= f.label :unit, "Unit of Measure"%><br>
+    <%= f.text_field :unit %>
+  </div>
 
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
 
 <p><%= link_to 'Edit', edit_recipe_path(@recipe) %></p>
-<p><%= link_to 'Add</p>
+
 <%= link_to 'Back', recipes_path %>

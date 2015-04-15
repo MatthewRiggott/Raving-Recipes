@@ -1,64 +1,49 @@
 class IngredientsController < ApplicationController
   before_action :set_ingredient, only: [:show, :edit, :update, :destroy]
 
-  # GET /ingredients
-  # GET /ingredients.json
   def index
     @ingredients = Ingredient.all
   end
 
-  # GET /ingredients/1
-  # GET /ingredients/1.json
   def show
   end
 
-  # GET /ingredients/new
   def new
     @ingredient = Ingredient.new
   end
 
-  # GET /ingredients/1/edit
   def edit
   end
 
-  # POST /ingredients
-  # POST /ingredients.json
   def create
-    @ingredient = Ingredient.new(ingredient_params)
+    @recipe = Recipe.find(params[:recipe_id])
+    if Ingredient.find_by(name: ingredient_params[:name])
+      @Ingredient = Ingredient.find_by(name: ingredient_params[:name])
+      @Ingredient.add_to_recipe(@recipe)
+    else
+      @ingredient = Ingredient.new(ingredient_params)
 
-    respond_to do |format|
       if @ingredient.save
-        format.html { redirect_to @ingredient, notice: 'Ingredient was successfully created.' }
-        format.json { render :show, status: :created, location: @ingredient }
+        binding.pry
+        redirect_to recipe_path(@recipe), notice: 'Ingredient was successfully created.'
       else
-        format.html { render :new }
-        format.json { render json: @ingredient.errors, status: :unprocessable_entity }
+        render :show
       end
+
     end
   end
 
-  # PATCH/PUT /ingredients/1
-  # PATCH/PUT /ingredients/1.json
   def update
-    respond_to do |format|
-      if @ingredient.update(ingredient_params)
-        format.html { redirect_to @ingredient, notice: 'Ingredient was successfully updated.' }
-        format.json { render :show, status: :ok, location: @ingredient }
-      else
-        format.html { render :edit }
-        format.json { render json: @ingredient.errors, status: :unprocessable_entity }
-      end
+    if @ingredient.update(ingredient_params)
+      redirect_to @ingredient, notice: 'Ingredient was successfully updated.'
+    else
+      render :edit
     end
   end
 
-  # DELETE /ingredients/1
-  # DELETE /ingredients/1.json
   def destroy
     @ingredient.destroy
-    respond_to do |format|
-      format.html { redirect_to ingredients_url, notice: 'Ingredient was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to ingredients_url, notice: 'Ingredient was successfully destroyed.'
   end
 
   private
@@ -68,6 +53,9 @@ class IngredientsController < ApplicationController
     end
 
     def ingredient_params
-      params.require(:ingredient).permit(:name, :time, :description, :category)
+      params.require(:ingredient).permit(
+        :name, :time, :description, :unit,
+        :category, :numerator_amount, :denominator_amount
+      )
     end
 end
