@@ -21,7 +21,8 @@ class DirectionsController < ApplicationController
     if @direction.save
       redirect_to edit_recipe_path(@direction.recipe), notice: 'Direction was successfully created.'
     else
-      render :new
+      Direction.fix_order_of_steps(@direction.recipe)
+      redirect_to edit_recipe_path(@direction.recipe), notice: 'Invalid step entry'
     end
   end
 

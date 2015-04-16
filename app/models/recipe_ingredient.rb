@@ -3,7 +3,7 @@ class RecipeIngredient < ActiveRecord::Base
 
   belongs_to :recipe
   belongs_to :ingredient
-  before_validation :add_or_find_ingredient, :on => :create
+  before_validation :add_or_find_ingredient, on: :create
 
   validates :recipe, presence: true
   validates :ingredient, presence: true
@@ -16,7 +16,7 @@ class RecipeIngredient < ActiveRecord::Base
 
   def add_or_find_ingredient
     if Ingredient.find_by(name: self.name)
-      ingredient = Ingredient.find(self.name)
+      ingredient = Ingredient.find_by(name: self.name)
       self.ingredient = ingredient
     else
       ingredient = Ingredient.new(name: self.name)

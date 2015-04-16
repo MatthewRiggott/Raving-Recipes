@@ -26,6 +26,7 @@ class IngredientsController < ApplicationController
       if @ingredient.save
         redirect_to recipe_path(@recipe), notice: 'Ingredient was successfully created.'
       else
+
         render :show
       end
 

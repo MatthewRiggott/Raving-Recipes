@@ -1,8 +1,8 @@
 <%= form_for [recipe, direction] do |f| %>
 
   <div class="field">
-    <%= f.label :step_number, "Step"%><br>
-    <%= f.number_field :step_number, value: (recipe.directions.count + 1) %>
+    <%= f.label :step_number, "Step" %>
+    <%= f.select :step_number, options_for_select((1..recipe.directions.count + 1), selected: recipe.directions.count + 1) %><br>
   </div>
 
   <div class="field">
