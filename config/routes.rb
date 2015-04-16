@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :recipes, only: [:index, :show]
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
-  resources :users, except: [:index] do
+  resources :users, only: [:show] do
     resources :recipes
   end
 
