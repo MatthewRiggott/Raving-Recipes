@@ -2,5 +2,24 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @recipe %> |
+<ul>
+  Ingredients:
+  <% @recipe.recipe_ingredients.each do |ringredient| %>
+    <li><sup><%= ringredient.numerator_amount %></sup>&frasl;<sub><%= ringredient.denominator_amount %></sub> <%= ringredient.unit %>(s) of <%= ringredient.ingredient.name %></li>
+  <% end %>
+</ul>
+
+<%= render partial: 'ingredients_form', locals: { recipe: @recipe, recipe_ingredient: @recipe_ingredient }%>
+
+<ol>
+Directions:
+  <% @recipe.directions.order(step_number: :ASC).each do |step| %>
+    <li><%= step.body %></li>
+  <% end %>
+</ol>
+
+<%= render partial: 'direction_form', locals: { recipe: @recipe, direction: @direction }%>
+
+
+<%= link_to 'Show', @recipe %>
 <%= link_to 'Back', recipes_path %>

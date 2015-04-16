@@ -24,7 +24,6 @@ class IngredientsController < ApplicationController
       @ingredient = Ingredient.new(ingredient_params)
 
       if @ingredient.save
-        binding.pry
         redirect_to recipe_path(@recipe), notice: 'Ingredient was successfully created.'
       else
         render :show

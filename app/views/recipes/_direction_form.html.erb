@@ -1,0 +1,16 @@
+<%= form_for [recipe, direction] do |f| %>
+
+  <div class="field">
+    <%= f.label :step_number, "Step"%><br>
+    <%= f.number_field :step_number, value: (recipe.directions.count + 1) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :body, "Add New Instruction" %><br>
+    <%= f.text_field :body %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

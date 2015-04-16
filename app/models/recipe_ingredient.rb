@@ -1,4 +1,6 @@
 class RecipeIngredient < ActiveRecord::Base
+  attr_accessor :name
+
   belongs_to :recipe
   belongs_to :ingredient
   before_validation :add_or_find_ingredient, :on => :create
@@ -12,12 +14,17 @@ class RecipeIngredient < ActiveRecord::Base
 
   private
 
-  def add_or_find_ingredient(name)
-    if Ingredient.find_by(:name)
-      ingredient = Ingredient.new(name: name)
-
+  def add_or_find_ingredient
+    if Ingredient.find_by(name: self.name)
+      ingredient = Ingredient.find(self.name)
+      self.ingredient = ingredient
     else
-
+      ingredient = Ingredient.new(name: self.name)
+      if ingredient.save
+        self.ingredient = ingredient
+      else
+        self.errors.add(:name, "Invalid ingredient")
+      end
     end
   end
 end
