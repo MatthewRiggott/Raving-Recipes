@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150413170918) do
+ActiveRecord::Schema.define(version: 20150417180703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "containers", force: :cascade do |t|
+    t.integer "user_id",   null: false
+    t.integer "recipe_id", null: false
+  end
+
+  add_index "containers", ["user_id", "recipe_id"], name: "index_containers_on_user_id_and_recipe_id", unique: true, using: :btree
 
   create_table "directions", force: :cascade do |t|
     t.integer  "step_number", null: false
@@ -90,6 +97,13 @@ ActiveRecord::Schema.define(version: 20150413170918) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "views", force: :cascade do |t|
+    t.integer "recipe_id", null: false
+    t.integer "user_id",   null: false
+  end
+
+  add_index "views", ["user_id", "recipe_id"], name: "index_views_on_user_id_and_recipe_id", unique: true, using: :btree
 
   add_foreign_key "identities", "users"
 end

@@ -2,7 +2,10 @@ class Recipe < ActiveRecord::Base
   has_many :recipe_ingredients
   has_many :directions
   has_many :ingredients, through: :recipe_ingredients
+  has_many :containers
+  has_many :views
   belongs_to :user
+  after_create :add_to_container
 
   validates :image_url, presence: true
   validates :name, presence: true, uniqueness: true
@@ -19,4 +22,10 @@ class Recipe < ActiveRecord::Base
     only_integer: true,
     greater_than_or_equal_to: 0
   }
+
+  private
+
+  def add_to_container
+    Container.create(user: current_user, recipe: self)
+  end
 end
