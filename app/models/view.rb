@@ -1,4 +1,4 @@
-class Container < ActiveRecord::Base
+class View < ActiveRecord::Base
   belongs_to :recipe
   belongs_to :user
 

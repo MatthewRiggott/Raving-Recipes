@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   has_many :recipes
   has_many :containers
   has_many :views
-
+  has_many :recipes, through: :views, as: :viewed_recipes
   TEMP_EMAIL_PREFIX = 'change@me'
   TEMP_EMAIL_REGEX = /\Achange@me/
 

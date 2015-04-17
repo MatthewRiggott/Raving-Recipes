@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  Name:
+  <%= @recipe.name %>
+</p>
+
+<img src= <%= @recipe.image_url %> alt="Picture of Food">
+<p>
+  Description:
+  <%= @recipe.description %>
+</p>
+
+<p>
+  Category:
+  <%= @recipe.category %>
+</p>
+
+<p>
+  Preparation Time:
+  <%= @recipe.prep_time %>
+</p>
+
+<ul>
+Ingredients:
+  <% @recipe.ingredients.each do |ingredient| %>
+    <li><%= ingredient %></li>
+  <% end %>
+</ul>
+
+<ol>
+Directions:
+<% @recipe.directions.order(step_number: :ASC).each do |step| %>
+  <li><%= step.body %></li>
+<% end %>
+</ol>
+
+<p><%= link_to 'Edit', edit_recipe_path(@recipe) if !current_user.nil? %></p>
+
+<%= link_to 'Back', recipes_path %>

@@ -9,5 +9,6 @@ class Container < ActiveRecord::Base
 
   def add_to_viewed
     View.find_or_create_by(user: self.user, recipe: self.recipe)
+    Recipe.vote_count.increment!
   end
 end
