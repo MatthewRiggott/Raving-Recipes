@@ -7,6 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 MEASURE_UNITS = [
+  "dash",
+  "pinch",
   "teaspoon",
   "tablespoon",
   "fluid ounce",

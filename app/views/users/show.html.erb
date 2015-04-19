@@ -6,5 +6,9 @@
   <% @recipes.each do |recipe| %>
     <h3><%= link_to recipe.name, recipe_path(recipe) %></h3>
     <%= recipe.category %>
+    <div class="rating">
+    <% (1..5).times do |star|
+<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+</div>
   <% end %>
 <br>
