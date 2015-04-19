@@ -1,16 +1,5 @@
 class DirectionsController < ApplicationController
-  before_action :set_direction, only: [:show, :edit, :update, :destroy]
-
-  def index
-    @directions = Direction.all
-  end
-
-  def show
-  end
-
-  def new
-    @direction = Direction.new
-  end
+  before_action :set_direction, only: [:edit, :update, :destroy]
 
   def edit
   end
