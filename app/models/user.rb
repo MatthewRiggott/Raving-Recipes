@@ -3,12 +3,13 @@ class User < ActiveRecord::Base
   has_many :recipes
   has_many :favorites
   has_many :recipes, through: :favorites, as: :favorite_recipes
+  ratyrate_rater
 
   TEMP_EMAIL_PREFIX = 'change@me'
   TEMP_EMAIL_REGEX = /\Achange@me/
 
-  devise :database_authenticatable, :registerable, :confirmable,
-    :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+  devise :database_authenticatable, :registerable, :recoverable,
+    :rememberable, :trackable, :validatable, :omniauthable
 
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
 
@@ -18,8 +19,8 @@ class User < ActiveRecord::Base
     user = signed_in_resource ? signed_in_resource : identity.user
 
     if user.nil?
-      # verify the email -  return email   --    facebook hash       linked in(not used here)      google oauth verified
-      email_is_verified = auth.info.email && (auth.info.verified || auth.info.verified_email || auth.extra.raw_info.email_verified)
+      # verify the email -  return email   --    facebook hash         google oauth verified
+      email_is_verified = auth.info.email && (auth.info.verified || auth.extra.raw_info.email_verified)
       email = auth.info.email if email_is_verified
       user = User.where(:email => email).first if email
 

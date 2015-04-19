@@ -9,10 +9,10 @@ class Favorite < ActiveRecord::Base
   private
 
   def vote_up
-    self.recipe.increment!(:vote_count)
+    recipe.increment!(:vote_count)
   end
 
   def vote_down
-    self.recipe.decrement!(:vote_count)
+    recipe.decrement!(:vote_count)
   end
 end

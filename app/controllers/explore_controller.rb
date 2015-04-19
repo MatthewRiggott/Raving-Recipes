@@ -1,5 +1,4 @@
 class ExploreController < ApplicationController
-
   def index
     if !current_user.nil?
       @recipe = get_recipes
@@ -35,7 +34,5 @@ class ExploreController < ApplicationController
       next_recipe = recipes.sample
       next_recipe = nil if favorites.include?(next_recipe)
     end
-
-    return next_recipe
   end
 end
