@@ -14,7 +14,11 @@ Rails.application.routes.draw do
     resources :recipe_ingredients
   end
 
-  resources :explore, only: [:index], path_names: { index: "new_recipes" }
+
+  resources :explore, only: [:index] do
+    post :like
+    post :next_recipe
+  end
 
   # in case the oauth provider doesn't provide a verified email address
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup

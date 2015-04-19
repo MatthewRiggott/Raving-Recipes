@@ -2,24 +2,40 @@ class ExploreController < ApplicationController
 
   def index
     if !current_user.nil?
-      @recipe = next_recipe
+      @recipe = get_recipes
+      @recipe_number = 0
     else
       redirect_to new_user_registration_path
     end
   end
 
   def like
-    Container.find_or_create_by(recipe: params[:recipe_id], user: current_user)
+    Favorite.create(recipe_id: params[:explore_id].to_i, user: current_user)
+    @recipe = get_recipes
+    @recipe_number = 0
+    redirect_to explore_index_path(recipes: @recipe, num: @recipe_number)
   end
 
-  def view_next
-    Container.find_or_create_by(recipe: params[:recipe_id], user: current_user)
+  def next_recipe
+    @recipe = get_recipes
+    @recipe_number = 0
+    render :index
   end
 
   private
 
-  def next_recipe
-    binding.pry
-    Recipe.where.not(id: current_user.views.recipe).sample
+  def get_recipes
+    favorites = []
+    current_user.favorites.each do |favorite|
+      favorites.push(favorite.recipe)
+    end
+    recipes = Recipe.where("id NOT IN (?)", favorites)
+    next_recipe = nil
+    while next_recipe == nil && !recipes.empty?
+      next_recipe = recipes.sample
+      next_recipe = nil if favorites.include?(next_recipe)
+    end
+
+    return next_recipe
   end
 end

@@ -1,6 +1,7 @@
 class RecipeIngredient < ActiveRecord::Base
   attr_accessor :name
 
+  has_many :favorites
   belongs_to :recipe
   belongs_to :ingredient
   before_validation :add_or_find_ingredient, on: :create

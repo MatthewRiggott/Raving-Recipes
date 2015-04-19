@@ -22,9 +22,14 @@
 </p>
 
 <ul>
-Ingredients:
-  <% @recipe.ingredients.each do |ingredient| %>
-    <li><%= ingredient %></li>
+  Ingredients:
+  <% @recipe.recipe_ingredients.each do |item| %>
+    <% if item.denominator_amount != 1 %>
+      <li><sup><%= item.numerator_amount %></sup>&frasl;<sub><%= item.denominator_amount %></sub>
+    <% else %>
+      <li><%= item.numerator_amount %>
+    <% end %>
+    <%= item.unit %>(s) of <%= item.ingredient.name %></li>
   <% end %>
 </ul>
 
@@ -35,6 +40,6 @@ Directions:
 <% end %>
 </ol>
 
-<p><%= link_to 'Edit', edit_recipe_path(@recipe) if !current_user.nil? %></p>
+<p><%= link_to 'Edit', edit_recipe_path(@recipe) if current_user == @recipe.owner %></p>
 
 <%= link_to 'Back', recipes_path %>

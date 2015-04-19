@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
   has_many :identities
   has_many :recipes
-  has_many :containers
-  has_many :views
-  has_many :recipes, through: :views, as: :viewed_recipes
+  has_many :favorites
+  has_many :recipes, through: :favorites, as: :favorite_recipes
+
   TEMP_EMAIL_PREFIX = 'change@me'
   TEMP_EMAIL_REGEX = /\Achange@me/
 
@@ -13,7 +13,6 @@ class User < ActiveRecord::Base
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
-
     # Get the identity and user if they exist
     identity = Identity.find_for_oauth(auth)
     user = signed_in_resource ? signed_in_resource : identity.user
