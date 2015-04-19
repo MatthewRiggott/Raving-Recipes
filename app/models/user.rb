@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :recipes
   has_many :favorites
   has_many :recipes, through: :favorites, as: :favorite_recipes
+  ratyrate_rater
 
   TEMP_EMAIL_PREFIX = 'change@me'
   TEMP_EMAIL_REGEX = /\Achange@me/

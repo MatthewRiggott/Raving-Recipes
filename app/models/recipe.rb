@@ -3,6 +3,7 @@ class Recipe < ActiveRecord::Base
   has_many :directions
   has_many :ingredients, through: :recipe_ingredients
   belongs_to :owner, class_name: "User"
+  ratyrate_rateable "value"
   after_create :add_to_favorites
 
   validates :image_url, presence: true
