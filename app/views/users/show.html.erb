@@ -6,7 +6,7 @@
     <h3><%= link_to recipe.name, recipe_path(recipe) %></h3>
     <%= recipe.category %>
     <div class="rating">
-      <span>Your Rating: <%= rating_for recipe, "value", enable_half: true, disable_after_rate: false %> Average Rating: <%= imdb_style_rating_for recipe, current_user %> <%= recipe.average("value").nil? ? "Be the First to Rate this Recipe" : recipe.average("value").avg.round(2) %></span>
+      <span>Your Rating: <%= rating_for recipe, "value", enable_half: true, disable_after_rate: false %> Average Rating: <%= recipe.average("value").nil? ? "Not yet Rated" : recipe.average("value").avg.round(2) %></span>
     </div>
 
 <% end %>
