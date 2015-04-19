@@ -1,5 +1,10 @@
-
-
-
-
 <p><%= link_to "Create a New Recipe", new_user_recipe_path(current_user) %></p>
+
+<h1>Listing Recipes</h1>
+
+
+  <% @recipes.each do |recipe| %>
+    <h3><%= link_to recipe.name, recipe_path(recipe) %></h3>
+    <%= recipe.category %>
+  <% end %>
+<br>

@@ -35,6 +35,7 @@ group :development, :test do
   gem 'byebug'
   gem "dotenv-rails"
   gem 'rails-pry'
+  gem 'rails-erd'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
   gem "coveralls", require: false

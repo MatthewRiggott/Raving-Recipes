@@ -4,13 +4,13 @@
 
 <ul>
   Ingredients:
-  <% @recipe.recipe_ingredients.each do |ringredient| %>
-    <% if ringredient.denominator_amount != 1 %>
-      <li><sup><%= ringredient.numerator_amount %></sup>&frasl;<sub><%= ringredient.denominator_amount %></sub>
+  <% @recipe.recipe_ingredients.each do |item| %>
+    <% if item.denominator_amount != 1 %>
+      <li><sup><%= item.numerator_amount %></sup>&frasl;<sub><%= item.denominator_amount %></sub>
     <% else %>
-      <li><%= ringredient.numerator_amount %>
+      <li><%= item.numerator_amount %>
     <% end %>
-    <%= ringredient.unit %>(s) of <%= ringredient.ingredient.name %></li>
+    <%= item.unit %>(s) of <%= item.ingredient.name %></li>
   <% end %>
 </ul>
 
