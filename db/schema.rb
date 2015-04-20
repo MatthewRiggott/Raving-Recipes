@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150419183352) do
+ActiveRecord::Schema.define(version: 20150420190220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,13 +94,11 @@ ActiveRecord::Schema.define(version: 20150419183352) do
   add_index "rating_caches", ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type", using: :btree
 
   create_table "recipe_ingredients", force: :cascade do |t|
-    t.integer  "recipe_id",                      null: false
-    t.integer  "ingredient_id",                  null: false
-    t.string   "unit",                           null: false
-    t.integer  "numerator_amount",               null: false
-    t.integer  "denominator_amount", default: 1, null: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.integer  "recipe_id",     null: false
+    t.integer  "ingredient_id", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "unit_amount",   null: false
   end
 
   create_table "recipes", force: :cascade do |t|

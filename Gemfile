@@ -36,6 +36,7 @@ group :development, :test do
   gem "dotenv-rails"
   gem 'rails-pry'
   gem 'rails-erd'
+  gem 'allrecipes', path: "../allrecipes"
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
   gem "coveralls", require: false

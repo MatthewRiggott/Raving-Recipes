@@ -1,13 +1,28 @@
 <p><%= link_to "Create a New Recipe", new_user_recipe_path(current_user) %></p>
 
-<h1>Listing Recipes</h1>
+<h1>My Recipe Box</h1>
+  <% if @my_recipes != [] %>
+    <h2>My Recipes</h2>
+    <% @my_recipes.each do |recipe| %>
+      <h3><%= link_to recipe.name, recipe_path(recipe) %></h3>
+      <%= recipe.category %>
+      <div class="rating">
+        <span>Your Rating: <%= rating_for recipe, "value", enable_half: false, disable_after_rate: false, stars: 10 %> Average Rating: <%= recipe.average("value").nil? ? "Not yet Rated" : recipe.average("value").avg.round(2) %></span>
+      </div>
+    <% end %>
+  <% end %>
+  <% if @my_recipes != [] && @favorite_recipes != [] %>
+    <li class="divider"></li>
+  <% end %>
+  <% if @favorite_recipes != [] %>
+    <h2>Favorited Recipes</h2>
+    <% @favorite_recipes.each do |recipe| %>
+      <h3><%= link_to recipe.name, recipe_path(recipe) %></h3>
+      <%= recipe.category %>
+      <div class="rating">
+        <span>Your Rating: <%= rating_for recipe, "value", enable_half: false, disable_after_rate: false, stars: 10 %> Average Rating: <%= recipe.average("value").nil? ? "Not yet Rated" : recipe.average("value").avg.round(2) %></span>
+      </div>
+    <% end %>
+  <% end %>
 
-  <% @recipes.each do |recipe| %>
-    <h3><%= link_to recipe.name, recipe_path(recipe) %></h3>
-    <%= recipe.category %>
-    <div class="rating">
-      <span>Your Rating: <%= rating_for recipe, "value", enable_half: true, disable_after_rate: false %> Average Rating: <%= recipe.average("value").nil? ? "Not yet Rated" : recipe.average("value").avg.round(2) %></span>
-    </div>
-
-<% end %>
 <br>

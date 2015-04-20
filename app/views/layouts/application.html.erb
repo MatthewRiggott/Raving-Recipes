@@ -32,6 +32,12 @@
     </div>
   <%- end -%>
 
+  <ul class="side-nav">
+    <li><%= link_to "Search for Recipes", recipes_path %></li>
+    <li><%= link_to "View my Recipes", user_path(current_user) %></li>
+    <li><%= link_to "Explore New Recipes", explore_index_path %></li>
+  </ul>
+
   <%= yield %>
 
   <%= javascript_include_tag 'application' %>

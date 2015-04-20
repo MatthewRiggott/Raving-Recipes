@@ -2,11 +2,11 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :finish_signup]
 
   def show
-    @recipes = []
+    @my_recipes = current_user.recipes
+    @favorite_recipes = []
     current_user.favorites.each do |fav|
-      @recipes.push fav.recipe
+      @favorite_recipes.push fav.recipe if fav.recipe.owner != current_user
     end
-
   end
 
   def edit

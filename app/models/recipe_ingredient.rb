@@ -8,9 +8,7 @@ class RecipeIngredient < ActiveRecord::Base
 
   validates :recipe, presence: true
   validates :ingredient, presence: true
-  validates :numerator_amount, presence: true, numericality: { only_integer: true }
-  validates :denominator_amount, presence: true, numericality: { only_integer: true }
-  validates :unit, presence: true
+  validates :unit_amount, presence: true
   validates :ingredient, uniqueness: { scope: :recipe }
 
   private
