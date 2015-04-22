@@ -26,6 +26,17 @@ class Recipe < ActiveRecord::Base
     greater_than_or_equal_to: 0
   }
 
+  def self.recommend(user)
+    favorites = []
+    current_user.favorites.each do |favorite|
+      favorites.push(favorite.recipe) if favorite.recipe
+    end
+    # expensive query - may need to refactor if things get slow
+    recipes = Recipe.where("id NOT IN (?)", favorites)
+
+
+  end
+
   private
 
   def add_to_favorites

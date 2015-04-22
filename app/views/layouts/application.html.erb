@@ -32,13 +32,21 @@
     </div>
   <%- end -%>
 
-  <ul class="side-nav">
-    <li><%= link_to "Search for Recipes", recipes_path %></li>
-    <li><%= link_to "View my Recipes", user_path(current_user) %></li>
-    <li><%= link_to "Explore New Recipes", explore_index_path %></li>
-  </ul>
 
-  <%= yield %>
+    <div class="small-2 columns">
+      <div class="side-nav-border">
+        <ul class="side-nav" id="side-nav-border">
+          <li class="side-text"><%= link_to "Search for Recipes", recipes_path %></li>
+          <li class="side-text"><%= link_to "View my Recipes", user_path(current_user) %></li>
+          <li class="side-text"><%= link_to "Explore New Recipes", explore_index_path %></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="small-9 columns">
+      <%= yield %>
+    </div>
+
 
   <%= javascript_include_tag 'application' %>
   <%= yield :extra_footer %>

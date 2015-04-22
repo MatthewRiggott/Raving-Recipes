@@ -1,15 +1,8 @@
 <%= form_for [recipe, @recipe_ingredient] do |f| %>
-  <div class="field">
-    <%= f.label :numerator_amount %>
-    <%= f.number_field :numerator_amount %>
-
-    <%= f.label :denominator_amount %>
-    <%= f.number_field :denominator_amount, value: 1 %>
-  </div>
 
   <div class="field">
-    <%= f.label :unit, "Unit of Measure"%><br>
-    <%= f.text_field :unit, value: "Unit" %>
+    <%= f.label :unit_amount, "Amount of Desired Ingredient"%><br>
+    <%= f.text_field :unit_amount %>
   </div>
 
   <div class="field">

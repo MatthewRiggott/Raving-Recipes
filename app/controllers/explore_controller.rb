@@ -27,12 +27,14 @@ class ExploreController < ApplicationController
     favorites = []
     current_user.favorites.each do |favorite|
       favorites.push(favorite.recipe)
-    end
-    recipes = Recipe.where("id NOT IN (?)", favorites)
-    next_recipe = nil
-    while next_recipe == nil && !recipes.empty?
-      next_recipe = recipes.sample
-      next_recipe = nil if favorites.include?(next_recipe)
+      explore_index_path
+      recipes = Recipe.where("id NOT IN (?)", favorites)
+      next_recipe = nil
+
+      while next_recipe == nil && !recipes.empty?
+        next_recipe = recipes.sample
+        next_recipe = nil if favorites.include?(next_recipe)
+      end
     end
   end
 end
