@@ -35,10 +35,10 @@ REGIONS = [
 ]
 
 COURSES = [
-  "appetizer",
-  "bread",
-  "breakfast",
-  "dessert",
+  # "appetizer",
+  # "bread",
+  # "breakfast",
+  # "dessert", #-------
   "drink",
   "fruit",
   "herbs",
@@ -53,10 +53,10 @@ recipes = Allrecipes.new
 
 binding.pry
 begin
-  REGIONS.each do |location|
-    (1..20).each do |page_number|
+  COURSES.each do |food_type|
+    (1..50).each do |page_number|
 
-      this_recipe = recipes.region(location, { limit: 5, page: page_number})
+      this_recipe = recipes.course(food_type, { limit: 5, page: page_number})
       if this_recipe != nil && this_recipe != []
       this_recipe.each do |recipe|
         cook = 0
@@ -68,14 +68,14 @@ begin
             name: recipe[:name],
             description: "This is a Description, This is a Description",
             image_url: recipe[:image],
-            country: location,
+            country: "US",
             prep_time: cook + prep,
-            category: "main",
+            category: food_type,
             owner_id: 42
           )
         else
           cur_recipe = Recipe.find_by(name: recipe[:name])
-          cur_recipe.update(country: location)
+          cur_recipe.update(category: food_type)
         end
 
         if cur_recipe.save
@@ -95,6 +95,7 @@ begin
             recipe_ingredient.name = ing[:name]
             recipe_ingredient.save
           end
+
           recipe[:directions].each_with_index do |step, index|
             Direction.create(
               recipe: cur_recipe,

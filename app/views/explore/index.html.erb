@@ -31,10 +31,10 @@
   </ul>
 
   <ol>
-  Directions:
-  <% @recipe.directions.order(step_number: :ASC).each do |step| %>
-    <li><%= step.body %></li>
-  <% end %>
+    Directions:
+    <% @recipe.directions.order(step_number: :ASC).each do |step| %>
+      <li><%= step.body %></li>
+    <% end %>
   </ol>
 
   <%= form_tag "/explore/#{@recipe.id}/next_recipe" do |f| %>
