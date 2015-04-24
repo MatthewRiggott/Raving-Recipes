@@ -17,6 +17,7 @@
  */
 $borderbrown: #a52a2a;
 $backgroundorange: #ffb347;
+$fontgreen: #008000;
 
 .side-nav-border {
   width: 110%;
@@ -32,6 +33,6 @@ $backgroundorange: #ffb347;
 
   &a {
     text-align: left;
-    font-color: green;
+    font-color: $fontgreen;
   }
 }
