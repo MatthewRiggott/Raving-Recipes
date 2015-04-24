@@ -15,7 +15,8 @@
 *= require foundation_and_overrides
 *= require_self
  */
-
+$borderbrown: #a52a2a;
+$backgroundorange: #ffb347;
 
 .side-nav-border {
   width: 110%;
@@ -25,14 +26,12 @@
   border: 3px;
   padding: 0.15rem 0.40rem;
   border-width: 0 1px;
-  border-color: brown;
+  border-color: $borderbrown;
   border-style: solid;
-  background-color: #ffb347;
+  background-color: $backgroundorange;
 
-    &a {
-      text-align: left;
-      font-color: green;
-
-    }
-
+  &a {
+    text-align: left;
+    font-color: green;
+  }
 }

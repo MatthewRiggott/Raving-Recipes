@@ -8,8 +8,19 @@
 <img src= <%= @recipe.image_url %> alt="Picture of Food">
 
 <p>
-  Category:
-  <%= @recipe.category %>
+  Category: <%= @recipe.category %>
+</p>
+
+<p>
+  Country: <%= @recipe.country %>
+</p>
+
+<p>
+  Average Rating: <%= @recipe.average("value").nil? ? "Not yet Rated" : @recipe.average("value").avg.round(2) %>
+</p>
+
+<p>
+  Likes: <%= @recipe.vote_count %>
 </p>
 
 <p>

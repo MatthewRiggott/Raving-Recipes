@@ -52,9 +52,9 @@ class Recipe < ActiveRecord::Base
           else
             good_ingredients[keyword.noun] += 2
           end
-          end
         end
       end
+    end
 
     # lets score some recipe suggestions
     suggestions = Hash.new(0)

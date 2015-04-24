@@ -5,7 +5,7 @@
   <% @recipes.each do |recipe| %>
     <div class="recipe">
     <h3><%= link_to recipe.name, recipe_path(recipe) %></h3>
-    <%= recipe.category %>
+      <%= recipe.category %>
     Country: <%= recipe.country %>
     </div>
     <img src= <%= recipe.image_url %> alt="Picture of Food">
