@@ -48,6 +48,7 @@ GEM
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    birch (0.0.8)
     builder (3.2.2)
     byebug (4.0.5)
       columnize (= 0.9.0)
@@ -114,6 +115,9 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.2)
     jwt (1.4.1)
+    kaminari (0.16.3)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     loofah (2.0.1)
@@ -163,6 +167,7 @@ GEM
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
     pg (0.18.1)
+    progressbar (0.21.0)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -232,6 +237,7 @@ GEM
       rspec-support (~> 3.2.0)
     rspec-support (3.2.2)
     ruby-graphviz (1.0.9)
+    rubyzip (0.9.9)
     sass (3.4.13)
     sass-rails (5.0.3)
       railties (>= 4.0.0, < 5.0)
@@ -239,6 +245,9 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (~> 1.1)
+    schiphol (1.0.1)
+      progressbar (>= 0.10.0)
+      rubyzip (~> 0.9.9)
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
@@ -266,6 +275,10 @@ GEM
     thread_safe (0.3.5)
     tilt (1.4.1)
     tins (1.3.5)
+    treat (2.1.0)
+      birch
+      schiphol
+      yomu
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.1)
@@ -285,6 +298,7 @@ GEM
     webrobots (0.1.1)
     xpath (2.0.0)
       nokogiri (~> 1.3)
+    yomu (0.1.5)
 
 PLATFORMS
   ruby
@@ -302,6 +316,7 @@ DEPENDENCIES
   ingreedy
   jbuilder (~> 2.0)
   jquery-rails
+  kaminari
   launchy
   omniauth
   omniauth-facebook
@@ -318,6 +333,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   shoulda-matchers
   spring
+  treat
   uglifier (>= 1.3.0)
   valid_attribute
   web-console (~> 2.0)

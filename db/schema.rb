@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150422233856) do
+ActiveRecord::Schema.define(version: 20150423181900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,8 +67,7 @@ ActiveRecord::Schema.define(version: 20150422233856) do
   end
 
   create_table "keywords", force: :cascade do |t|
-    t.string  "noun",            null: false
-    t.integer "keyword_join_id", null: false
+    t.string "noun", null: false
   end
 
   add_index "keywords", ["noun"], name: "index_keywords_on_noun", using: :btree
@@ -118,7 +117,6 @@ ActiveRecord::Schema.define(version: 20150422233856) do
     t.integer  "owner_id",                 null: false
     t.string   "category",                 null: false
     t.string   "name",                     null: false
-    t.text     "description",              null: false
     t.integer  "prep_time",                null: false
     t.integer  "rating_count", default: 0, null: false
     t.integer  "rating_total", default: 0, null: false

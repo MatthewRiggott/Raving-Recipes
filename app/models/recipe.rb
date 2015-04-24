@@ -1,15 +1,16 @@
 class Recipe < ActiveRecord::Base
-  has_many :recipe_ingredients
-  has_many :directions
+  has_many :recipe_ingredients, dependent: :destroy
+  has_many :directions, dependent: :destroy
   has_many :ingredients, through: :recipe_ingredients
   belongs_to :owner, class_name: "User"
   ratyrate_rateable "value"
+
   after_create :add_to_favorites
+  paginates_per 10
 
   validates :image_url, presence: true
   validates :name, presence: true, uniqueness: true
   validates :owner, presence: true
-  validates :description, presence: true, length: { minimum: 31 }
   validates :prep_time, presence: true, numericality: { only_integer: true }
   validates :vote_count,
     numericality: {
@@ -29,34 +30,51 @@ class Recipe < ActiveRecord::Base
   def self.recommend(user)
     favorites = []
     high_favorites = []
-    good_ingredient_list = []
-    good_ingredients = {}
-    current_user.favorites.each do |favorite|
+    good_ingredients = Hash.new(0)
+    top_suggestions = []
+
+    user.favorites.each do |favorite|
       favorites.push(favorite.recipe)
-      rating = Rate.find_by(rater_id: current_user, dimension: "value", rateable_id: favorite.recipe)
-      high_favorites.push favorite.recipe if rating >= 4
-      break if high_favorites.count > 20
+      rating = Rate.find_by(rater_id: user, dimension: "value", rateable_id: favorite.recipe)
+      high_favorites.push favorite.recipe if rating >= 4 || rating.nil?
     end
+
     high_favorites.each do |recipe|
       recipe.ingredients.each do |ingredient|
-        # build an array of favored ingredients
-        good_ingredients[ingredient] = 0
-      end
-    end
-    good_ingredients.keys.each do |match_ingredient|
-      good_ingredients.keys.each do |second_ingredient|
-        match_ingredient.split(" ").each do |str|
-          str.each do |word|
-            if second_ingredient.include?(word)
-              good_ingredients[match_ingredient] += 1
-              good_ingredients[second_ingredient] += 1
-              break
-            end
+        rating = Rate.find_by(rater_id: user, dimension: "value", rateable_id: favorite.recipe)
+
+        # build an scored hash of favored ingredient keywords
+        ingredient.keywords.each do |keyword|
+          if rating == 5
+            good_ingredients[keyword.noun] += 5
+          elsif rating == 4
+            good_ingredients[keyword.noun] += 3
+          else
+            good_ingredients[keyword.noun] += 2
           end
+          end
+        end
+      end
+
+    # lets score some recipe suggestions
+    suggestions = Hash.new(0)
+
+    search_keys = (good_ingredients.sort_by {|k, v| -v})
+    search_keys[0..9].each do |keyword|
+      keyword[0].ingredients.each do |ingredient|
+        ingredient.recipes.each do |recipe|
+          suggestions[recipe] += good_ingredients[keyword]
         end
       end
     end
 
+    # find the best recipes
+    suggestions.sort_by {|k, v| -v}.each do |ranked_suggestion|
+      top_suggestions << ranked_suggestion[0] if Recipe.where("id NOT IN (?)", favorites)
+      break if top_suggestions.size > 9
+    end
+
+    recipe[]
     # expensive query - may need to refactor if things get slow
     recipes = Recipe.where("id NOT IN (?)", favorites)
   end

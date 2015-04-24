@@ -5,3 +5,4 @@ class CreateKeyWords < ActiveRecord::Migration
     end
   end
 end
+
