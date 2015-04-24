@@ -58,7 +58,7 @@ class Recipe < ActiveRecord::Base
 
     # lets score some recipe suggestions
     suggestions = Hash.new(0)
-    search_keys = (good_ingredients.sort_by { |_, v| -v})
+    search_keys = (good_ingredients.sort_by { |_, v| -v })
     search_keys[0..9].each do |keyword|
       keyword[0].ingredients.each do |ingredient|
         ingredient.recipes.each do |recipe|
@@ -68,7 +68,7 @@ class Recipe < ActiveRecord::Base
     end
 
     # find the best recipes
-    suggestions.sort_by { |_, v| -v}.each do |ranked_suggestion|
+    suggestions.sort_by { |_, v| -v }.each do |ranked_suggestion|
       top_suggestions << ranked_suggestion[0] if Recipe.where("id NOT IN (?)", favorites)
       break if top_suggestions.size > 9
     end
