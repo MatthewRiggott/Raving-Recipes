@@ -6,14 +6,21 @@
 </p>
 
 <img src= <%= @recipe.image_url %> alt="Picture of Food">
+
 <p>
-  Description:
-  <%= @recipe.description %>
+  Category: <%= @recipe.category %>
 </p>
 
 <p>
-  Category:
-  <%= @recipe.category %>
+  Country: <%= @recipe.country %>
+</p>
+
+<p>
+  Average Rating: <%= @recipe.average("value").nil? ? "Not yet Rated" : @recipe.average("value").avg.round(2) %>
+</p>
+
+<p>
+  Likes: <%= @recipe.vote_count %>
 </p>
 
 <p>
@@ -24,12 +31,7 @@
 <ul>
   Ingredients:
   <% @recipe.recipe_ingredients.each do |item| %>
-    <% if item.denominator_amount != 1 %>
-      <li><sup><%= item.numerator_amount %></sup>&frasl;<sub><%= item.denominator_amount %></sub>
-    <% else %>
-      <li><%= item.numerator_amount %>
-    <% end %>
-    <%= item.unit %>(s) of <%= item.ingredient.name %></li>
+    <li><%= item.unit_amount %> of <%= item.ingredient.name %></li>
   <% end %>
 </ul>
 

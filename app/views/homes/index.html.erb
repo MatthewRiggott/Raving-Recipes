@@ -2,7 +2,7 @@
   Welcome <%= current_user.nil? ? "Guest":current_user.name %>
 </p>
 <% if current_user != nil %>
-  <p><%= link_to "View User Profile", user_path(current_user) %></p>
+  <p><%= link_to "View User Profile", users_path(current_user) %></p>
   <p><%= link_to "Search Other Recipes", recipes_path  %></p>
 <% else %>
   <%= link_to "Sign Up", new_user_registration_path  %>

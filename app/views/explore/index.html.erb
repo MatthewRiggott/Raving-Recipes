@@ -26,20 +26,15 @@
   <ul>
     Ingredients:
     <% @recipe.recipe_ingredients.each do |item| %>
-      <% if item.denominator_amount != 1 %>
-        <li><sup><%= item.numerator_amount %></sup>&frasl;<sub><%= item.denominator_amount %></sub>
-      <% else %>
-        <li><%= item.numerator_amount %>
-      <% end %>
-      <%= item.unit %>(s) of <%= item.ingredient.name %></li>
+      <li><%= item.unit_amount %> of <%= item.ingredient.name %></li>
     <% end %>
   </ul>
 
   <ol>
-  Directions:
-  <% @recipe.directions.order(step_number: :ASC).each do |step| %>
-    <li><%= step.body %></li>
-  <% end %>
+    Directions:
+    <% @recipe.directions.order(step_number: :ASC).each do |step| %>
+      <li><%= step.body %></li>
+    <% end %>
   </ol>
 
   <%= form_tag "/explore/#{@recipe.id}/next_recipe" do |f| %>
@@ -57,6 +52,6 @@
   <% end %>
 
 <% else %>
-  <p>Your all of suggestions for today.  Click here to continue searching.</p>
+  <p>Your all out of suggestions for today.  Click below to continue searching.</p>
   <%= link_to 'Back', recipes_path %>
 <% end %>

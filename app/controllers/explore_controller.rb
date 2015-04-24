@@ -1,8 +1,7 @@
 class ExploreController < ApplicationController
   def index
     if !current_user.nil?
-      @recipe = get_recipes
-      @recipe_number = 0
+      @recipe = Recipe.recommend(current_user)
     else
       redirect_to new_user_registration_path
     end
@@ -23,16 +22,4 @@ class ExploreController < ApplicationController
 
   private
 
-  def get_recipes
-    favorites = []
-    current_user.favorites.each do |favorite|
-      favorites.push(favorite.recipe)
-    end
-    recipes = Recipe.where("id NOT IN (?)", favorites)
-    next_recipe = nil
-    while next_recipe == nil && !recipes.empty?
-      next_recipe = recipes.sample
-      next_recipe = nil if favorites.include?(next_recipe)
-    end
-  end
 end

@@ -9,9 +9,30 @@
  * compiled file so the styles you add here take precedence over styles defined in any styles
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
- *
- *= require_tree .
- *= require_self
- *= require foundation_and_overrides
 
+*= require_tree
+
+*= require foundation_and_overrides
+*= require_self
  */
+$borderbrown: #a52a2a;
+$backgroundorange: #ffb347;
+$fontgreen: #008000;
+
+.side-nav-border {
+  width: 110%;
+  position: relative;
+  left: -1.1em;
+  padding-right: 20em;
+  border: 3px;
+  padding: 0.15rem 0.40rem;
+  border-width: 0 1px;
+  border-color: $borderbrown;
+  border-style: solid;
+  background-color: $backgroundorange;
+
+  &a {
+    text-align: left;
+    color: $fontgreen;
+  }
+}

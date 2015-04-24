@@ -1,6 +1,6 @@
 class Direction < ActiveRecord::Base
   belongs_to :recipe
-  before_validation :insert_new_step, on: [:create, :edit]
+  # before_validation :insert_new_step, on: [:create, :edit]
 
   validates :recipe, presence: true
   validates :body, presence: true
