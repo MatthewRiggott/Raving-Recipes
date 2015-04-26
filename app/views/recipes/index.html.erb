@@ -1,17 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Recipes</h1>
+<h1>Recipes</h1>
   <%= form_tag recipes_path, method: :get, role: "search" do %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", name: nil %>
-  </p>
+  <div class="searchbar">
+    <div class="searchfield"><%= text_field_tag :search, params[:search] %></div>
+    <div class="searchbutton"><%= submit_tag "Search", name: nil %></div>
+  </div>
   <% end %>
 
   <% @recipes.each do |recipe| %>
     <div class="recipe">
     <h3><%= link_to recipe.name, recipe_path(recipe) %></h3>
-      <%= recipe.category %>
+    Dish Category: <%= recipe.category %>
     Country: <%= recipe.country %>
     </div>
     <img src= <%= recipe.image_url %> alt="Picture of Food">

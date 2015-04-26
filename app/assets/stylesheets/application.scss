@@ -18,9 +18,21 @@
 $borderbrown: #a52a2a;
 $backgroundorange: #ffffcc;
 $fontgreen: #008000;
-
+$fontblue: #94c9ff;
 .side-nav {
   height: 100vh;
+}
+
+.searchbar {
+  display: inline-block;
+}
+
+.page-end {
+  font-size: 2em;
+}
+
+h1 {
+  color: $fontblue;
 }
 
 .side-nav-border {

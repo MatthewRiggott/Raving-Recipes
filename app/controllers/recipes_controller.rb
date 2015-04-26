@@ -53,7 +53,7 @@ class RecipesController < ApplicationController
       @recipes = Recipe.search(
         params[:search],
         order: { vote_count: :desc }
-      )
+      ).page params[:page]
     else
       @recipes = Recipe.order(:name).page params[:page]
     end

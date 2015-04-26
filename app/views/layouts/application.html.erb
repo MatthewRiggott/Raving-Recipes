@@ -44,9 +44,10 @@
           <% end %>
           <li class="side-text"><%= link_to "Search for Recipes", recipes_path %></li>
           <li class="side-text"><%= link_to "Explore New Recipes", explore_index_path %></li>
-          <li class="side-text"><h3>Trending</h3></li>
+          <li class="side-text"><h3>Trending Recipes</h3></li>
           <% Recipe.limit(3).order(updated_at: :DESC).each do |recent_recipe| %>
-            <%= link_to image_tag(recent_recipe.image_url), recipe_path(recent_recipe) %><br>
+            <h4><%= recent_recipe.name %></h4>
+            <p><%= link_to image_tag(recent_recipe.image_url), recipe_path(recent_recipe) %></p>
           <% end %>
         </ul>
       </div>
