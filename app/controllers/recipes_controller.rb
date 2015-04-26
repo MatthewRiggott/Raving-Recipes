@@ -48,29 +48,29 @@ class RecipesController < ApplicationController
 
   private
 
-    def search_recipes
-      if params[:search].present?
-        @recipes = Recipe.search(
-          params[:search],
-          order: {vote_count: :desc}
-        )
-      else
-        @recipes = Recipe.order(:name).page params[:page]
-      end
-    end
-
-    def set_recipe
-      @recipe = Recipe.find(params[:id])
-    end
-
-    def recipe_params
-      params.require(:recipe).permit(
-        :name,
-        :description,
-        :category,
-        :prep_time,
-        :image_url,
-        :country
+  def search_recipes
+    if params[:search].present?
+      @recipes = Recipe.search(
+        params[:search],
+        order: { vote_count: :desc }
       )
+    else
+      @recipes = Recipe.order(:name).page params[:page]
     end
+  end
+
+  def set_recipe
+    @recipe = Recipe.find(params[:id])
+  end
+
+  def recipe_params
+    params.require(:recipe).permit(
+      :name,
+      :description,
+      :category,
+      :prep_time,
+      :image_url,
+      :country
+    )
+  end
 end

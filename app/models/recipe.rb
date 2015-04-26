@@ -77,7 +77,7 @@ class Recipe < ActiveRecord::Base
       top_suggestions << ranked_suggestion[0] if Recipe.where("id NOT IN (?)", favorites)
       break if top_suggestions.size > 9
     end
-    return top_suggestions
+    top_suggestions
   end
 
   private
