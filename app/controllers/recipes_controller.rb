@@ -2,12 +2,13 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
 
   def index
-    @recipes = Recipe.order(:name).page params[:page]
+    @recipes = search_recipes
   end
 
   def show
     @ingredient = Ingredient.new
     @direction = Direction.new
+    @favorite = Favorite.new
   end
 
   def new
@@ -47,18 +48,29 @@ class RecipesController < ApplicationController
 
   private
 
-    def set_recipe
-      @recipe = Recipe.find(params[:id])
-    end
-
-    def recipe_params
-      params.require(:recipe).permit(
-        :name,
-        :description,
-        :category,
-        :prep_time,
-        :image_url,
-        :country
+  def search_recipes
+    if params[:search].present?
+      @recipes = Recipe.search(
+        params[:search],
+        order: { vote_count: :desc }
       )
+    else
+      @recipes = Recipe.order(:name).page params[:page]
     end
+  end
+
+  def set_recipe
+    @recipe = Recipe.find(params[:id])
+  end
+
+  def recipe_params
+    params.require(:recipe).permit(
+      :name,
+      :description,
+      :category,
+      :prep_time,
+      :image_url,
+      :country
+    )
+  end
 end

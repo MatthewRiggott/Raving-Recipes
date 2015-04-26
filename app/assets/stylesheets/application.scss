@@ -16,8 +16,12 @@
 *= require_self
  */
 $borderbrown: #a52a2a;
-$backgroundorange: #ffb347;
+$backgroundorange: #ffffcc;
 $fontgreen: #008000;
+
+.side-nav {
+  height: 100vh;
+}
 
 .side-nav-border {
   width: 110%;
@@ -31,7 +35,7 @@ $fontgreen: #008000;
   border-style: solid;
   background-color: $backgroundorange;
 
-  &a {
+  &li {
     text-align: left;
     color: $fontgreen;
   }
