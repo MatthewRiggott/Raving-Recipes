@@ -19,19 +19,15 @@
 
 $(function(){ $(document).foundation(); });
 
-$("#addfavorite").on("click", function(e) {
+$("#addfavorite").on("click", function() {
   var routePath = window.location.href + "/favorites";
-  var addFood = 45;
-  // $.ajax({
-  //   url: routePath,
-  //   method: "POST",
-  //   dataType: "json",
-  // });
-  console.log(routePath);
-
+  var addFood = $.ajax({
+    url: routePath,
+    method: "POST",
+    dataType: "json",
+  });
 });
 
 addFood.done(function(result){
-  debugger;
   $(".favoritelink").hide();
 });
