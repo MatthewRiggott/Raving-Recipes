@@ -1,7 +1,15 @@
 class ExploreController < ApplicationController
   def index
     if !current_user.nil?
-      @recipe = Recipe.recommend(current_user)
+      if session[:suggestions].nil?
+        session[:suggestions] = []
+        Recipe.recommend(current_user).each do |recipe|
+          session[:suggestions] << recipe.id
+        end
+      elsif session[:suggestions] == []
+        session[:suggestions] = nil
+      end
+      @recipe = Recipe.find(session[:suggestions][0]) unless session[:suggestions].nil?
     else
       redirect_to new_user_registration_path
     end
@@ -9,17 +17,12 @@ class ExploreController < ApplicationController
 
   def like
     Favorite.create(recipe_id: params[:explore_id].to_i, user: current_user)
-    @recipe = get_recipes
-    @recipe_number = 0
-    redirect_to explore_index_path(recipes: @recipe, num: @recipe_number)
+    session[:suggestions].shift
+    redirect_to explore_index_path
   end
 
   def next_recipe
-    @recipe = get_recipes
-    @recipe_number = 0
-    render :index
+    session[:suggestions].shift
+    redirect_to explore_index_path
   end
-
-  private
-
 end

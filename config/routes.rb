@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :recipes do
     resources :directions, except: [:show, :index]
     resources :recipe_ingredients, except: [:show, :index]
+    resources :favorites, only: [:create]
   end
 
   resources :explore, only: [:index] do

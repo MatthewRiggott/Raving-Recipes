@@ -9,11 +9,6 @@
   <img src= <%= @recipe.image_url %> alt="Picture of Food">
 
   <p>
-    Description:
-    <%= @recipe.description %>
-  </p>
-
-  <p>
     Category:
     <%= @recipe.category %>
   </p>
@@ -39,19 +34,18 @@
 
   <%= form_tag "/explore/#{@recipe.id}/next_recipe" do |f| %>
     <div class="actions">
-      <%= hidden_field_tag :number, value: 1 %>
       <%= submit_tag "Next Recipe" %>
     </div>
   <% end %>
 
   <%= form_tag "/explore/#{@recipe.id}/like" do |f| %>
     <div class="actions">
-      <%= hidden_field_tag :number, value: 1 %>
       <%= submit_tag "Yummy" %>
     </div>
   <% end %>
 
 <% else %>
   <p>Your all out of suggestions for today.  Click below to continue searching.</p>
-  <%= link_to 'Back', recipes_path %>
+  <p><%= link_to 'Back', recipes_path %></p>
+  <p><%= link_to 'Click Here to get more suggestions', explore_index_path %></p>
 <% end %>

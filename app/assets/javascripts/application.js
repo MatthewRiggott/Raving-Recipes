@@ -18,3 +18,20 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+$("#addfavorite").on("click", function(e) {
+  var routePath = window.location.href + "/favorites";
+  var addFood = 45;
+  // $.ajax({
+  //   url: routePath,
+  //   method: "POST",
+  //   dataType: "json",
+  // });
+  console.log(routePath);
+
+});
+
+addFood.done(function(result){
+  debugger;
+  $(".favoritelink").hide();
+});
