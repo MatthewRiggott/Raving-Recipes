@@ -33,8 +33,8 @@
   <%- end -%>
 
 
-    <div class="small-2 columns">
-      <div class="side-nav-border">
+    <div class="small-3 columns side-nav">
+
         <ul class="side-nav" id="side-nav-border">
           <% if current_user != nil %>
             <li class="side-text"><%= link_to "View my Recipes", user_path(current_user) %></li>
@@ -50,11 +50,11 @@
             <p><%= link_to image_tag(recent_recipe.image_url), recipe_path(recent_recipe) %></p>
           <% end %>
         </ul>
-      </div>
+
     </div>
 
     <div class="content">
-      <div class="small-9 columns">
+      <div class="small-9 columns content">
         <%= yield %>
       </div>
     </div>

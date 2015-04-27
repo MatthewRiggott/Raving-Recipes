@@ -1,21 +1,29 @@
 <p id="notice"><%= notice %></p>
 
+<div class="row">
 <h1>Recipes</h1>
+<hr>
   <%= form_tag recipes_path, method: :get, role: "search" do %>
   <div class="searchbar">
     <div class="searchfield"><%= text_field_tag :search, params[:search] %></div>
     <div class="searchbutton"><%= submit_tag "Search", name: nil %></div>
   </div>
   <% end %>
-
+<div class="row">
   <% @recipes.each do |recipe| %>
-    <div class="recipe">
-    <h3><%= link_to recipe.name, recipe_path(recipe) %></h3>
-    Dish Category: <%= recipe.category %>
-    Country: <%= recipe.country %>
+    <div class="small-6 columns search-page">
+
+      <p>Category: <%= recipe.category %> |
+      Country: <%= recipe.country %></p>
+
+      <img src= <%= recipe.image_url %> alt="Picture of Food">
+      <div class="recipe-name">
+        <h3><%= link_to recipe.name, recipe_path(recipe) %></h3>
+      </div>
     </div>
-    <img src= <%= recipe.image_url %> alt="Picture of Food">
   <% end %>
   <div class="page-end">
     <%= paginate @recipes, window: 4 %>
   </div>
+</div>
+</div>

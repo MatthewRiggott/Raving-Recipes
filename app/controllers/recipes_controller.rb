@@ -52,8 +52,10 @@ class RecipesController < ApplicationController
     if params[:search].present?
       @recipes = Recipe.search(
         params[:search],
-        order: { vote_count: :desc }
-      ).page params[:page]
+        order: { vote_count: :desc },
+        page: params[:page],
+        per_page: 10
+      )
     else
       @recipes = Recipe.order(:name).page params[:page]
     end

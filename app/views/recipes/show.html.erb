@@ -1,16 +1,13 @@
 <p id="notice"><%= notice %></p>
-
+<div class="row">
 <h1><%= @recipe.name %></h1>
+<hr>
+</div>
 <div class="row">
   <div class="small-6 large-6 columns">
 
 
     <img src= <%= @recipe.image_url %> alt="Picture of Food">
-    <% if Favorite.exists?(user: current_user, recipe: @recipe) %>
-      <%= "This recipe is in your cookbook" %>
-    <% else %>
-      <%= link_to "Add to Favorites", recipe_favorites_path(@recipe), method: :post, id: "addfavorites" %>
-    <% end %>
 
   </div>
 
@@ -39,6 +36,12 @@
     </div>
   </div>
 </div>
+<% if Favorite.exists?(user: current_user, recipe: @recipe) %>
+      <%= "This recipe is in your cookbook" %>
+    <% else %>
+      <%= link_to "Add to Favorites", recipe_favorites_path(@recipe), method: :post, id: "addfavorites" %>
+    <% end %>
+<br><br>
 
 <ul>
   Ingredients:

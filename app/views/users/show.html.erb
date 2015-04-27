@@ -1,6 +1,8 @@
+<div class="row">
 <h1>My Recipe Box</h1>
+<hr>
   <% if @my_recipes != [] %>
-    <h2>My Recipes</h2>
+    <h3>My Recipes</h3>
     <% @my_recipes.each do |recipe| %>
       <h3><%= link_to recipe.name, recipe_path(recipe) %></h3>
       <%= recipe.category %>
@@ -13,7 +15,7 @@
     <li class="divider"></li>
   <% end %>
   <% if @favorite_recipes != [] %>
-    <h2>Favorited Recipes</h2>
+    <h3>Favorited Recipes</h3>
     <% @favorite_recipes.each do |recipe| %>
       <h3><%= link_to recipe.name, recipe_path(recipe) %></h3>
       <%= recipe.category %>
@@ -23,3 +25,4 @@
     <% end %>
   <% end %>
 <br>
+</div>

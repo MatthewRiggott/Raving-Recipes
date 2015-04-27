@@ -1,32 +1,32 @@
+
+<div class= "row">
 <p id="notice"><%= notice %></p>
 
 <% if @recipe != nil %>
-  <p>
-    Name:
+  <h2>
     <%= @recipe.name %>
-  </p>
-
-  <img src= <%= @recipe.image_url %> alt="Picture of Food">
-
-  <p>
+  </h2>
+  <hr>
+  <div class="explore-pic">
+  <img src= <%= @recipe.image_url %>  alt="Picture of Food">
+  </div>
+  <h5>
     Category:
     <%= @recipe.category %>
-  </p>
+  </h5>
 
-  <p>
+  <h5>
     Preparation Time:
     <%= @recipe.prep_time %>
-  </p>
-
+  </h5>
+  <h3>Ingredients: </h3>
   <ul>
-    Ingredients:
     <% @recipe.recipe_ingredients.each do |item| %>
       <li><%= item.unit_amount %> of <%= item.ingredient.name %></li>
     <% end %>
   </ul>
-
+<h3>Directions:</h3>
   <ol>
-    Directions:
     <% @recipe.directions.order(step_number: :ASC).each do |step| %>
       <li><%= step.body %></li>
     <% end %>
@@ -34,13 +34,13 @@
 
   <%= form_tag "/explore/#{@recipe.id}/next_recipe" do |f| %>
     <div class="actions">
-      <%= submit_tag "Next Recipe" %>
+      <%= submit_tag "Next Recipe", class: "button" %>
     </div>
   <% end %>
 
   <%= form_tag "/explore/#{@recipe.id}/like" do |f| %>
     <div class="actions">
-      <%= submit_tag "Yummy" %>
+      <%= submit_tag "Yummy" , class: "button" %>
     </div>
   <% end %>
 
@@ -49,3 +49,4 @@
   <p><%= link_to 'Back', recipes_path %></p>
   <p><%= link_to 'Click Here to get more suggestions', explore_index_path %></p>
 <% end %>
+</div>
