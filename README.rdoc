@@ -1,28 +1,39 @@
-== README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
+Ruby version 2.1.5 was used in this deployment.
 
 * System dependencies
 
 * Configuration
 
 * Database creation
+rake db:create
+rake db:migrate
 
 * Database initialization
+BEFORE running the scraping script turn any sleep/powersaving features off.
+The seeder file contains a script for scraping information from www.allrecipes.com
+You can scrape by course type (main, dessert, drink, ect.)  or by country of origin.
+BEFORE running this script, be sure to create a user with id 42 (or change the user id
+used within the script).  I found that 5 second sleeps between every 5 recipes scraped ran fine when left on overnight.
 
-* How to run the test suite
+
+
+The next steps are for extracting keywords out of ingredients ---
+First* to parse ingredients, treat gem is needed.  The instructions outlined below will
+help to install it.  This gem processes language and allows for filtering out of the "noise" within the ingredients column.
+https://github.com/louismullie/treat/wiki/Manual
+
+Once scraped data is obtained run the second script in db_seed to push ingredients to a csv.
+Then run parse_tags.rb to extract the keywords and corresponding ingredient ids into
+another CSV file.
+Finally, the third script inside the seeds.rb file will take the keywords and ids from the CSV and populate the postgresql database tables for keywords and the corresponding join entries.
+
+
+Also supplied is a postgresql dump file - raving_recipes.dump.  This can be used to seed your database.  This comes with keywords already extracted for all recipes.
 
 * Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+TODO:
+Setup the recommendation to queue the tasks at night.
+Figure out heroku deployment issue concerning the reccomendation branch.
 
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
