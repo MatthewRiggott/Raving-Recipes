@@ -29,8 +29,7 @@ another CSV file.
 Finally, the third script inside the seeds.rb file will take the keywords and ids from the CSV and populate the postgresql database tables for keywords and the corresponding join entries.
 
 
-Also supplied is a postgresql dump file - raving_recipes.dump.  This can be used to
-seed your database.  This comes with keywords already extracted for all recipes.
+Also supplied is a postgresql dump file - raving_recipes.dump.  This can be used to seed your database.  This comes with keywords already extracted for all recipes.
 
 * Services (job queues, cache servers, search engines, etc.)
 
