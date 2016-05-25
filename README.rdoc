@@ -1,39 +1,16 @@
+This project was built in ~10 days as a final project for a Rails development program.  This application allows for creating, rating, and finding recipes.  It uses a simple ingredients based recommendation algorithm to suggest recipes to users.  The database was seeded by scraping from All Recipes.
 
-Ruby version 2.1.5 was used in this deployment.
+![Save New Recipes](http://imgur.com/6twVQl2)
+Users can add new recipes.
 
-* System dependencies
+![Rate Saved Recipes](http://imgur.com/GkVm7Y4)
+Users can rate recipes they've saved.
 
-* Configuration
+![Get Suggested Recipes](http://imgur.com/y9JBgyz)
+Users can get recommendations based on past rating history.
 
-* Database creation
-rake db:create
-rake db:migrate
+![Search for other Recipes](http://imgur.com/j2pRkgh)
+Search form that searches by name/ ingredients.
 
-* Database initialization
-BEFORE running the scraping script turn any sleep/powersaving features off.
-The seeder file contains a script for scraping information from www.allrecipes.com
-You can scrape by course type (main, dessert, drink, ect.)  or by country of origin.
-BEFORE running this script, be sure to create a user with id 42 (or change the user id
-used within the script).  I found that 5 second sleeps between every 5 recipes scraped ran fine when left on overnight.
-
-
-
-The next steps are for extracting keywords out of ingredients ---
-First* to parse ingredients, treat gem is needed.  The instructions outlined below will
-help to install it.  This gem processes language and allows for filtering out of the "noise" within the ingredients column.
-https://github.com/louismullie/treat/wiki/Manual
-
-Once scraped data is obtained run the second script in db_seed to push ingredients to a csv.
-Then run parse_tags.rb to extract the keywords and corresponding ingredient ids into
-another CSV file.
-Finally, the third script inside the seeds.rb file will take the keywords and ids from the CSV and populate the postgresql database tables for keywords and the corresponding join entries.
-
-
-Also supplied is a postgresql dump file - raving_recipes.dump.  This can be used to seed your database.  This comes with keywords already extracted for all recipes.
-
-* Services (job queues, cache servers, search engines, etc.)
-
-TODO:
-Setup the recommendation to queue the tasks at night.
-Figure out heroku deployment issue concerning the reccomendation branch.
-
+![Paginated Views](http://imgur.com/zVLXrs6)
+Paginated Results.

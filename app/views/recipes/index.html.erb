@@ -1,14 +1,24 @@
 <p id="notice"><%= notice %></p>
 
 <div class="row">
-<h1>Recipes</h1>
-<hr>
-  <%= form_tag recipes_path, method: :get, role: "search" do %>
-  <div class="searchbar">
-    <div class="searchfield"><%= text_field_tag :search, params[:search] %></div>
-    <div class="searchbutton"><%= submit_tag "Search", name: nil %></div>
+  <div class= "small-12 small-centered">
+    <h1 class="center-text">Recipes</h1>
   </div>
+</div>
+<hr>
+
+<div class="row">
+<div class="small-3 columns">
+  <%= form_tag recipes_path, method: :get, role: "search" do %>
+
+    <%= text_field_tag :search, params[:search], class: "searchfield" %>
+    </div>
+    <div class="small-3 columns small-pull-1 end">
+    <%= submit_tag "Search", name: nil, class: "small radius button searchbutton" %>
+    </div>
   <% end %>
+</div>
+
 <div class="row">
   <% @recipes.each do |recipe| %>
     <div class="small-6 columns search-page">
@@ -22,8 +32,8 @@
       </div>
     </div>
   <% end %>
-  <div class="page-end">
-    <%= paginate @recipes, window: 4 %>
+  <div class="small-6 columns small-pull-3 page-end">
+    <%= paginate @recipes, window: 2 %>
   </div>
 </div>
 </div>

@@ -12,22 +12,32 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require foundation
 //= require jquery.raty
 //= require ratyrate
-//= require foundation
 //= require_tree .
 
-$(function(){ $(document).foundation(); });
-
-$("#addfavorite").on("click", function() {
-  var routePath = window.location.href + "/favorites";
-  var addFood = $.ajax({
-    url: routePath,
-    method: "POST",
-    dataType: "json",
-  });
+$(function() {
+  $(document).foundation();
 });
 
-addFood.done(function(result){
-  $(".favoritelink").hide();
+$(document).ready(function() {
+// sticky nav bar
+  var stickyNavTop = $('.sticky-navbar').offset().top;
+
+  var stickyNav = function(){
+    var scrollTop = $(window).scrollTop();
+    if (scrollTop > stickyNavTop) {
+      $('.sticky-navbar').addClass('sticky');
+    } else {
+      $('.sticky-navbar').removeClass('sticky');
+    }
+  };
+
+  stickyNav();
+
+  $(window).scroll(function() {
+    console.log("scrolling");
+    stickyNav();
+  });
 });

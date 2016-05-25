@@ -23,7 +23,21 @@ $backgroundorange: #ffffcc;
 $fontgreen: #008000;
 $fontblue: #94c9ff;
 
+.sticky {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    border-top: 0;
+}
 
+.center-text {
+  text-align: center;
+}
+.main-nav-scrolled {
+  position: fixed;
+}
 .content {
   padding-left: 20px;
 }
@@ -36,13 +50,26 @@ $fontblue: #94c9ff;
   }
 
 }
-
+.searchfield {
+  display: inline-block;
+}
+.searchbutton {
+  display: inline-block;
+  float: right;
+}
+.user-control {
+  margin: 1.0em;
+}
+.title {
+  background-color: #000000;
+}
 .searchbar {
   display: inline-block;
+  float: left;
 }
 
 .page-end {
-  font-size: 2em;
+  font-size: 1.25em;
 }
 
 .explore-pic img {
@@ -55,6 +82,19 @@ $fontblue: #94c9ff;
   border-color: $blue ;
 }
 
+.no-pad {
+  padding: 0;
+}
+
+.no-pad-left {
+  padding-left: 0;
+}
+.no-pad-right {
+  padding-right: 0;
+}
+.no-pad-bot {
+  padding-bottom: 0;
+}
 .body {
   font-family: 'Montaga', serif;
   color: #333;
